@@ -1,13 +1,11 @@
-import 'package:floor_demo/database/app_database.dart';
 import 'package:floor_demo/navigation/app_pages.dart';
 import 'package:floor_demo/navigation/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() async{
-WidgetsFlutterBinding.ensureInitialized();
-final database=await $FloorAppDateBase.databaseBuilder('app_database.db').build();
-  runApp( MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -7,7 +7,7 @@ part of 'app_database.dart';
 // **************************************************************************
 
 // ignore: avoid_classes_with_only_static_members
-class $FloorAppDateBase {
+class $FloorAppDataBase {
   /// Creates a database builder for a persistent database.
   /// Once a database is built, you should keep a reference to it and re-use it.
   static _$AppDateBaseBuilder databaseBuilder(String name) =>
@@ -42,7 +42,7 @@ class _$AppDateBaseBuilder {
   }
 
   /// Creates the database and initializes it.
-  Future<AppDateBase> build() async {
+  Future<AppDataBase> build() async {
     final path = name != null
         ? await sqfliteDatabaseFactory.getDatabasePath(name!)
         : ':memory:';
@@ -56,7 +56,7 @@ class _$AppDateBaseBuilder {
   }
 }
 
-class _$AppDateBase extends AppDateBase {
+class _$AppDateBase extends AppDataBase {
   _$AppDateBase([StreamController<String>? listener]) {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
@@ -146,7 +146,10 @@ class _$MainDao extends MainDao {
   @override
   Future<List<NoteEntity>> getAllNotes() async {
     return _queryAdapter.queryList('SELECT * FROM NoteEntity',
-        mapper: (Map<String, Object?> row) => NoteEntity());
+        mapper: (Map<String, Object?> row) => NoteEntity(
+            id: row['id'] as int?,
+            title: row['title'] as String,
+            data: row['data'] as String));
   }
 
   @override
